@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	//printf("ThreadNum=%d M=%d N=%d K=%d\n", thread_num, m, n, k);
 	for (int round = 0; round < ROUND; round++) {
 		gettimeofday(&start, NULL);
-		cblas_sgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, m, n, k, 0.674, A, m, B, k, 0.013, C, m);
+		cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 0.674, A, k, B, n, 0.013, C, n);
 		gettimeofday(&finish, NULL);
 
 		time_array[round] = ((uint32_t)(finish.tv_sec - start.tv_sec))*1000000 + (uint32_t)(finish.tv_usec - start.tv_usec);
